@@ -8,6 +8,8 @@
 
 // Apply the java-library plugin to add support for Java Library
 apply plugin: 'java-library'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -21,5 +23,69 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
-version = '0.0.1-SNAPSHOT'
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
 
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+group = "com.github.bryan0919lin"
+archivesBaseName = "event-bus"
+version = '0.0.1'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Event Bus'
+                packaging 'jar'
+                // optionally artifactId can be defined here 
+                description 'Just a simple event bus that implement the observer pattern with subscribe / publish'
+                url ''
+
+                scm {
+                    connection 'scm:git:https://github.com/bryan0919lin/event-bus.git'
+                    developerConnection 'scm:git:https://github.com/bryan0919lin/event-bus.git'
+                    url 'https://github.com/bryan0919lin/event-bus.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'bryan0919lin'
+                        name 'Bryan Lin'
+                        email 'bryan.0919.lin@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+}
