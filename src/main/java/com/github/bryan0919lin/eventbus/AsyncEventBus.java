@@ -1,4 +1,4 @@
-package idv.bryan0919lin.eventbus;
+package com.github.bryan0919lin.eventbus;
 
 import java.util.Arrays;
 import java.util.Collection;

@@ -1,11 +1,12 @@
-package idv.bryan0919lin.eventbus;
+package com.github.bryan0919lin.eventbus;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import com.github.bryan0919lin.eventbus.EventBusImpl;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Executors;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,7 +14,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class AsyncEventBusTest {
+public class EventBusImplTest {
 
     @Before
     public void setUp() {
@@ -32,18 +33,15 @@ public class AsyncEventBusTest {
     }
 
     @Test
-    public void testPublish() throws InterruptedException {
-        AsyncEventBus asyncEventBus = new AsyncEventBus(
-                Executors.newCachedThreadPool());
+    public void testPublish() {
+        EventBusImpl eventBus = new EventBusImpl();
 
         Map<String, String> r = new HashMap<>();
-        asyncEventBus.subscribe("Test", (d) -> {
+        eventBus.subscribe("Test", d -> {
             r.put("Test", (String) d);
         });
 
-        asyncEventBus.publish("Test", "QQ");
-
-        Thread.sleep(500);
+        eventBus.publish("Test", "QQ");
 
         assertNotNull(r.get("Test"));
         assertEquals("QQ", r.get("Test"));

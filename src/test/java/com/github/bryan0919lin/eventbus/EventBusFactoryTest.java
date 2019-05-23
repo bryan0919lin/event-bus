@@ -1,5 +1,11 @@
-package idv.bryan0919lin.eventbus;
+package com.github.bryan0919lin.eventbus;
 import static org.junit.Assert.assertTrue;
+
+import com.github.bryan0919lin.eventbus.AsyncEventBus;
+import com.github.bryan0919lin.eventbus.EventBus;
+import com.github.bryan0919lin.eventbus.EventBusConfig;
+import com.github.bryan0919lin.eventbus.EventBusFactory;
+import com.github.bryan0919lin.eventbus.EventBusImpl;
 
 import java.util.concurrent.Executors;
 

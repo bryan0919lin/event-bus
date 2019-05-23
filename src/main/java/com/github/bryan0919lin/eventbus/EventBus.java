@@ -1,4 +1,4 @@
-package idv.bryan0919lin.eventbus;
+package com.github.bryan0919lin.eventbus;
 
 public interface EventBus {
 
