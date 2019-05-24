@@ -63,7 +63,7 @@ uploadArchives {
                 packaging 'jar'
                 // optionally artifactId can be defined here 
                 description 'Just a simple event bus that implement the observer pattern with subscribe / publish'
-                url ''
+                url 'https://github.com/bryan0919lin/event-bus'
 
                 scm {
                     connection 'scm:git:https://github.com/bryan0919lin/event-bus.git'
