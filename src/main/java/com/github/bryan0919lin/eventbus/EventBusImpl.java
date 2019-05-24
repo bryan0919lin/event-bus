@@ -20,12 +20,12 @@ public class EventBusImpl implements EventBus {
 
     @Override
     public void publish(String event, Object data) {
-        Collection<SubscribeAction> subscriptoins = subscriptionMap.get(event);
+        Collection<SubscribeAction> subscriptions = subscriptionMap.get(event);
         if (event == null) {
             return;
         }
 
-        for (SubscribeAction a: subscriptoins) {
+        for (SubscribeAction a: subscriptions) {
             a.execute(data);
         }
     }
