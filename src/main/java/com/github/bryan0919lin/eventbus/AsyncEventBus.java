@@ -33,7 +33,13 @@ public class AsyncEventBus implements EventBus {
         }
 
         for (SubscribeAction a: subscriptoins) {
-            executorService.submit(() -> a.execute(data));
+            executorService.submit(new Runnable() {
+
+                @Override
+                public void run() {
+                    a.execute(data);
+                }
+            });
         }
     }
 

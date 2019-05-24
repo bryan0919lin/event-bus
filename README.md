@@ -8,7 +8,7 @@ You can use maven to retrieve this lib as the following:
     <dependency>
         <groupId>com.github.bryan0919lin</groupId>
         <artifactId>event-bus</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
     </dependency>
     
 Then use the EventBusFactory to get the EventBus:
@@ -28,15 +28,15 @@ Subscribe an action for a specific event:
 If using JDK 8+, you can use lambda expression to declare an action:
 
     eventBus.subscribe("EventA", d -> {
-        // do somthing...
+        // do something...
     });
     
-Try to publish an event with data, then the event will execute all the subscriptoins with the specific data.
+Try to publish an event with data, then the event will execute all the subscriptions with the specific data.
 
     eventBus.publish("EventA", "I'm data");
     
 # Using asynchronous event bus
-This lib use synchronous event bus as default. That meanns when you publish an event, you need to wait for all subscrptions done, then you can go to next step. To use the event bus more efficiently, you can change the default event bus as below:
+This lib use synchronous event bus by default. That means when you publish an event, you need to wait for all subscrptions done, then you can go to next step. To use the event bus more efficiently, you can change the default event bus as below:
 
     EventBusConfig.setEventBus(new AsyncEventBus(Executors.newCachedThreadPool()));
     
