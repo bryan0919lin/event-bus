@@ -43,7 +43,7 @@ signing {
 
 group = "com.github.bryan0919lin"
 archivesBaseName = "event-bus"
-version = '0.0.2'
+version = '0.0.3'
 
 uploadArchives {
     repositories {
